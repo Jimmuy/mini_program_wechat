@@ -1,0 +1,29 @@
+<!-- /pages/experience-detail/index.wxml -->
+<view class="detail-container" wx:if="{{experience}}">
+
+  <!-- 1. 顶部概要卡片 -->
+  <view class="card header-card">
+    <view class="header-role">{{experience.role}}</view>
+    <view class="header-company">{{experience.company}}</view>
+    <view class="header-time">{{experience.time}}</view>
+  </view>
+
+  <!-- 2. 详情卡片 -->
+  <view class="card">
+    <view class="card-title">主要职责与成果</view>
+    <view class="card-content">
+      <!-- 循环显示所有详情 -->
+      <block wx:for="{{experience.details}}" wx:key="*this">
+        <view class="list-item-dot">
+          <view class="dot"></view>
+          <text>{{item}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+
+<!-- 加载中/错误 -->
+<view wx:else class="loading-container">
+  <text>加载中...</text>
+</view>
