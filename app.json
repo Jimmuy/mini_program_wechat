@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/home/home",
+    "pages/index/index",
+    "pages/resume/index",
     "pages/experience-detail/index"
   ],
   "tabBar": {
@@ -11,16 +12,16 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/index/index",
         "text": "主页",
         "iconPath": "assets/tabbar/home.png",
         "selectedIconPath": "assets/tabbar/home_selected.png"
       },
       {
-        "pagePath": "pages/experience-detail/index",
-        "text": "简历",
-        "iconPath": "assets/tabbar/resume.png",
-        "selectedIconPath": "assets/tabbar/resume_selected.png"
+        "pagePath": "pages/resume/index",
+        "text": "主页",
+        "iconPath": "assets/tabbar/home.png",
+        "selectedIconPath": "assets/tabbar/home_selected.png"
       }
     ]
   },

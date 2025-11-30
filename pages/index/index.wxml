@@ -1,0 +1,111 @@
+<!-- home.wxml -->
+<view class="home-container">
+  <!-- 加载中 -->
+  <view wx:if="{{pageLoading}}" class="loading-container">
+    <t-loading theme="circular" size="40rpx" text="加载中..."></t-loading>
+  </view>
+
+  <!-- 简历内容 -->
+  <view wx:else class="resume-container">
+    
+    <!-- 1. 顶部个人信息卡片 -->
+    <view class="card header-card animate-fade-in" bindtap="onCardTap">
+      <view class="header-name">{{resume.name}}</view>
+      <view class="header-title">{{resume.title}}</view>
+      <view class="header-info-container">
+        <block wx:for="{{resume.basicInfo}}" wx:key="label">
+          <view class="header-info-item">
+            <text class="info-label">{{item.label}}：</text>
+            <text class="info-value">{{item.value}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 2. 核心优势卡片 -->
+    <view class="card animate-slide-up delay-100">
+      <view class="card-title">核心优势</view>
+      <view class="card-content">
+        <block wx:for="{{resume.coreAdvantages}}" wx:key="*this">
+          <view class="list-item-dot">
+            <view class="dot"></view>
+            <text>{{item}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 3. 职业技能卡片 -->
+    <view class="card animate-slide-up delay-200">
+      <view class="card-title">职业技能</view>
+      <!-- 使用新的 class 来移除内边距，以便 tags-cloud 能贴边 -->
+      <view class="card-content-skills">
+        <block wx:for="{{resume.skills}}" wx:key="category">
+          
+          <!-- Regular skill category -->
+          <view wx:if="{{!item.isLanguage}}" class="skill-category">
+            <view class="skill-title">{{item.category}}</view>
+            <view class="skill-desc">{{item.items}}</view>
+          </view>
+
+          <!-- Language Tags -->
+          <view wx:else class="skill-category">
+            <view class="skill-title">{{item.category}}</view>
+            <view class="tags-cloud">
+              <block wx:for="{{item.items}}" wx:for-item="lang" wx:key="name">
+                <view class="tag-item" style="{{lang.style}}">
+                  {{lang.name}}
+                </view>
+              </block>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 4. 工作经验卡片 -->
+    <view class="card animate-slide-up delay-300">
+      <view class="card-title">工作经验</view>
+      <view class="card-content">
+        <block wx:for="{{resume.workExperience}}" wx:key="company">
+          <!-- 添加 clickable-card 类来显示手型，并绑定点击事件 -->
+          <view class="exp-item clickable-card" 
+                bindtap="navigateToExperienceDetail" 
+                data-index="{{index}}">
+            <view class="exp-header">
+              <view class="exp-role">{{item.role}}</view>
+              <view class="exp-time">{{item.time}}</view>
+            </view>
+            <view class="exp-company">{{item.company}}</view>
+            <!-- 注意：这里我们显示的是 summary -->
+            <view class="exp-desc">{{item.summary}}</view>
+            <!-- 添加“查看详情”指示器 -->
+            <view class="exp-more-indicator">
+              <text>查看详情</text>
+              <t-icon name="chevron-right" size="32rpx"></t-icon>
+            </view>
+          </view>
+          <!-- 分隔线 -->
+          <view wx:if="{{index < resume.workExperience.length - 1}}" class="divider"></view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 5. 自我介绍卡片 -->
+    <view class="card animate-slide-up delay-400">
+      <view class="card-title">自我介绍</view>
+      <view class="card-content">
+        <block wx:for="{{resume.aboutMe}}" wx:key="*this">
+          <view class="list-item-dot">
+            <view class="dot"></view>
+            <text>{{item}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- Toast提示 -->
+  <t-toast id="t-toast"></t-toast>
+</view>

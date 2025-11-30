@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "简历详情",
+  "usingComponents": {
+    "t-image": "/components/webp-image/index",
+    "t-toast": "tdesign-miniprogram/toast/toast"
+  }
+}
+
+

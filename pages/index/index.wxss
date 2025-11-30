@@ -1,0 +1,278 @@
+/* home.wxss */
+page {
+  background-color: #f4f5f7; /* Material Design 背景灰 */
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.home-container {
+  box-sizing: border-box;
+}
+
+/* 加载中 */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 简历容器 */
+.resume-container {
+  padding: 24rpx;
+  padding-bottom: 48rpx;
+}
+
+/* Material Design 卡片基础样式 */
+.card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  margin-bottom: 32rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+  overflow: hidden; /* 确保子元素不会溢出圆角 */
+}
+
+.card:active {
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.12);
+}
+
+.card-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+  padding: 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.card-content {
+  padding: 32rpx;
+  font-size: 28rpx;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* 1. 顶部个人信息卡片 */
+.header-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  box-shadow: 0 8rpx 24rpx rgba(110, 100, 234, 0.3);
+}
+.header-card:active {
+  box-shadow: 0 12rpx 30rpx rgba(110, 100, 234, 0.4);
+}
+
+.header-name {
+  font-size: 48rpx;
+  font-weight: bold;
+  padding: 32rpx 32rpx 0;
+}
+
+.header-title {
+  font-size: 32rpx;
+  font-weight: 300;
+  padding: 8rpx 32rpx 24rpx;
+  opacity: 0.9;
+}
+
+.header-info-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 24rpx 32rpx;
+  font-size: 26rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.header-info-item {
+  width: 100%;
+}
+
+.info-label {
+  font-weight: 500;
+}
+.info-value {
+  font-weight: 300;
+}
+
+/* 2. 带圆点的列表 (用于优势/自我介绍) */
+.list-item-dot {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+}
+.list-item-dot:last-child {
+  margin-bottom: 0;
+}
+.dot {
+  width: 16rpx;
+  height: 16rpx;
+  background-color: #667eea;
+  border-radius: 50%;
+  margin-right: 16rpx;
+  margin-top: 10rpx;
+  flex-shrink: 0;
+}
+
+/* 3. 职业技能 */
+/* 新增：用于技能卡片内容，移除了左右内边距 */
+.card-content-skills {
+  padding: 32rpx 0; /* 移除左右padding */
+  font-size: 28rpx;
+  color: #555;
+  line-height: 1.7;
+}
+
+.skill-category {
+  margin-bottom: 24rpx;
+}
+.skill-category:last-child {
+  margin-bottom: 0;
+}
+.skill-title {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8rpx;
+  padding: 0 32rpx; /* 为标题单独添加padding */
+}
+.skill-desc {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+  padding: 0 32rpx; /* 为描述单独添加padding */
+}
+
+/* 4. 工作经验 */
+.exp-item {
+  margin-bottom: 24rpx;
+  position: relative;
+  transition: background-color 0.2s;
+}
+.exp-item:last-child {
+  margin-bottom: 0;
+}
+
+/* 新增：可点击卡片的样式 */
+.clickable-card {
+  cursor: pointer;
+  padding: 24rpx; /* 为可点击项增加内边距 */
+  margin: -24rpx; /* 抵消父元素的padding */
+  padding-bottom: 0;
+  margin-bottom: 24rpx;
+}
+.clickable-card:active {
+  background-color: #f9f9f9;
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+.exp-role {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+.exp-time {
+  font-size: 26rpx;
+  color: #999;
+}
+.exp-company {
+  font-size: 28rpx;
+  color: #667eea;
+  font-weight: 500;
+  margin-bottom: 12rpx;
+}
+.exp-desc {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+}
+.divider {
+  height: 1rpx;
+  background-color: #f0f0f0;
+  margin: 32rpx 0;
+}
+
+/* 新增：查看详情指示器 */
+.exp-more-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 16rpx;
+}
+.exp-more-indicator text {
+  margin-right: 4rpx;
+}
+
+/* --- 新增：语言标签和动画 --- */
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16rpx 32rpx 0; /* 调整内边距 */
+  gap: 20rpx; /* 增加间距 */
+}
+
+.tag-item {
+  padding: 12rpx 24rpx;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  color: #667eea;
+  transition: all 0.3s ease;
+  animation: float var(--float-duration, 3s) cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-delay: var(--float-delay, 0s);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4rpx 12rpx rgba(102, 126, 234, 0.2);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8rpx) rotate(2deg);
+  }
+  75% {
+    transform: translateY(4rpx) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.tag-item:active {
+  transform: scale(0.95);
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+  opacity: 0; /* 初始隐藏，等待动画执行 */
+}
+
+/* 依次延迟动画 */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }

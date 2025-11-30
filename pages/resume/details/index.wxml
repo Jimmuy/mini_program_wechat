@@ -1,0 +1,41 @@
+<view class="resume-detail-page">
+  <view class="resume-header">
+    <text class="resume-name">{{resume.name}}</text>
+    <text class="resume-title">{{resume.title}}</text>
+  </view>
+
+  <view class="resume-section">
+    <text class="section-title">个人信息</text>
+    <view class="section-content">
+      <text>电话: {{resume.phone}}</text>
+      <text>邮箱: {{resume.email}}</text>
+      <text>城市: {{resume.city}}</text>
+    </view>
+  </view>
+
+  <view class="resume-section">
+    <text class="section-title">教育背景</text>
+    <view class="section-content" wx:for="{{resume.education}}" wx:key="index">
+      <text class="item-title">{{item.degree}} - {{item.university}}</text>
+      <text class="item-date">{{item.startDate}} - {{item.endDate}}</text>
+      <text>{{item.major}}</text>
+    </view>
+  </view>
+
+  <view class="resume-section">
+    <text class="section-title">工作经验</text>
+    <view class="section-content" wx:for="{{resume.experience}}" wx:key="index" bindtap="navigateToExperienceDetail" data-index="{{index}}">
+      <text class="item-title">{{item.position}} - {{item.company}}</text>
+      <text class="item-date">{{item.startDate}} - {{item.endDate}}</text>
+      <text wx:for="{{item.responsibilities}}" wx:for-item="responsibility" wx:key="*this">- {{responsibility}}</text>
+    </view>
+  </view>
+
+  <view class="resume-section">
+    <text class="section-title">技能</text>
+    <view class="section-content">
+      <text wx:for="{{resume.skills}}" wx:for-item="skill" wx:key="*this">{{skill}}</text>
+    </view>
+  </view>
+</view>
+<t-toast id="t-toast" />

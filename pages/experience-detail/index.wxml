@@ -1,13 +1,13 @@
 <!-- /pages/experience-detail/index.wxml -->
 <view class="detail-container" wx:if="{{experience}}">
-
+  
   <!-- 1. 顶部概要卡片 -->
   <view class="card header-card">
     <view class="header-role">{{experience.role}}</view>
     <view class="header-company">{{experience.company}}</view>
     <view class="header-time">{{experience.time}}</view>
   </view>
-
+  
   <!-- 2. 详情卡片 -->
   <view class="card">
     <view class="card-title">主要职责与成果</view>
