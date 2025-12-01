@@ -2,8 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/gallery/index",
-    "pages/resume/index",
-    "pages/experience-detail/index"
+    "pages/resume/index"
   ],
   "tabBar": {
     "custom": true,
