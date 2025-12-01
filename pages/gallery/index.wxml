@@ -1,0 +1,96 @@
+<!-- pages/gallery/index.wxml -->
+<view class="gallery-container">
+  
+  <!-- 1. Cover List View -->
+  <view class="cover-list-view" wx:if="{{viewMode === 'list'}}">
+    <view class="header">
+      <view class="header-title">
+        CAPTURED <text class="text-neon-blue">MOMENTS</text>
+      </view>
+      <view class="header-desc">
+        每一次快门都是对时间的切片。这里收藏了我眼中的世界，按照足迹分类。
+      </view>
+    </view>
+
+    <view class="cover-list">
+      <block wx:for="{{galleryData}}" wx:key="location" wx:for-index="groupIdx">
+        <view class="cover-item" wx:if="{{!item.hidden}}" bindtap="viewCategory" data-group-idx="{{groupIdx}}">
+          <view class="cover-image-container">
+            <t-image src="{{item.photos[0].url}}" mode="aspectFill" class="cover-image" />
+            <view class="cover-overlay">
+              <view class="cover-location">{{item.location}}</view>
+              <view class="cover-count">{{item.photos.length}} PHOTOS</view>
+            </view>
+          </view>
+          <view class="cover-desc">{{item.description}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 2. Detail Waterfall View -->
+  <view class="detail-view" wx:if="{{viewMode === 'detail'}}">
+    <view class="detail-header">
+      <view class="back-btn" bindtap="backToList">
+        <t-icon name="arrow-left" size="48rpx" color="#fff" />
+      </view>
+      <view class="detail-title">{{currentLocation}}</view>
+    </view>
+
+    <view class="photos-grid">
+      <block wx:for="{{galleryData[currentGroupIdx].photos}}" wx:key="id" wx:for-item="photo" wx:for-index="photoIdx">
+        <view class="photo-item" bindtap="openLightbox" data-photo-idx="{{photoIdx}}" wx:if="{{!photo.failed}}">
+          <t-image src="{{photo.url}}" mode="widthFix" class="photo-img" binderror="onImageError" data-group-idx="{{currentGroupIdx}}" data-photo-idx="{{photoIdx}}" />
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 3. Lightbox View -->
+  <view class="lightbox {{viewMode === 'lightbox' ? 'visible' : ''}}" catchtouchmove="preventTouchMove">
+    <view class="lightbox-bg" bindtap="closeLightbox"></view>
+    
+    <view class="lightbox-content">
+      <view class="close-btn" bindtap="closeLightbox">
+        <t-icon name="close" size="64rpx" color="#fff" />
+      </view>
+
+      <view class="nav-btn prev-btn" catchtap="prevPhoto" wx:if="{{hasPrev}}">
+        <t-icon name="chevron-left" size="64rpx" color="#fff" />
+      </view>
+
+      <view class="nav-btn next-btn" catchtap="nextPhoto" wx:if="{{hasNext}}">
+        <t-icon name="chevron-right" size="64rpx" color="#fff" />
+      </view>
+
+      <view class="lightbox-image-container" bindtap="toggleInfo">
+        <image src="{{currentPhoto.url}}" mode="aspectFit" class="lightbox-image" />
+      </view>
+
+      <!-- Toggleable Info Panel -->
+      <view class="lightbox-info {{showInfo ? 'show' : ''}}">
+        <view class="lightbox-title">{{currentPhoto.title}}</view>
+        <view class="lightbox-location">
+          <t-icon name="location" size="32rpx" color="#00f3ff" />
+          <text>{{currentLocation}}</text>
+        </view>
+        
+        <view class="lightbox-exif" wx:if="{{currentPhoto.exif}}">
+          <view class="exif-item">
+            <t-icon name="camera" size="28rpx" color="#666" />
+            <text>{{currentPhoto.exif.camera}}</text>
+          </view>
+          <view class="exif-item">
+            <text>ISO {{currentPhoto.exif.iso}}</text>
+          </view>
+          <view class="exif-item">
+            <text>{{currentPhoto.exif.aperture}}</text>
+          </view>
+          <view class="exif-item">
+            <text>{{currentPhoto.exif.shutter}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,3 +1,21 @@
-@import 'style/iconfont.wxss';
+/**app.wxss**/
+page {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
+  --neon-blue: #00f3ff;
+  --neon-purple: #bc13fe;
+  --neon-green: #4ade80;
+}
 
-@import 'style/theme.wxss';
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 

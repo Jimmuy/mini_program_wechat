@@ -1,20 +1,10 @@
-<view class="hidden-tab-bar-container">
-  <t-tab-bar
- value="{{active}}"
- bindchange="onChange"
- split="{{false}}"
->
-	<t-tab-bar-item
-	 wx:for="{{list}}"
-	 wx:for-item="item"
-	 wx:for-index="index"
-	 wx:key="index"
-	>
-		<view class="custom-tab-bar-wrapper">
-			<t-icon prefix="wr" name="{{item.icon}}" size="48rpx" />
-			<view class="text">{{ item.text }}</view>
-		</view>
-	</t-tab-bar-item>
-</t-tab-bar>
+<view class="custom-tab-bar">
+  <view class="tab-bar-container">
+    <block wx:for="{{list}}" wx:key="index">
+      <view class="tab-bar-item {{active === index ? 'active' : ''}}" data-index="{{index}}" bindtap="onChange">
+        <image class="tab-icon" src="{{active === index ? item.selectedIconPath : item.iconPath}}" mode="aspectFit" />
+        <!-- <view class="tab-text">{{item.text}}</view> -->
+      </view>
+    </block>
+  </view>
 </view>
-

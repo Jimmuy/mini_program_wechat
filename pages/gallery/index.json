@@ -3,7 +3,6 @@
   "usingComponents": {
     "t-icon": "tdesign-miniprogram/icon/icon",
     "t-loading": "tdesign-miniprogram/loading/loading",
-    "t-button": "tdesign-miniprogram/button/button",
-    "t-input": "tdesign-miniprogram/input/input"
+    "t-image": "tdesign-miniprogram/image/image"
   }
 }

@@ -1,25 +1,32 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/gallery/index",
     "pages/resume/index",
     "pages/experience-detail/index"
   ],
   "tabBar": {
     "custom": true,
     "color": "#8C8C8C",
-    "selectedColor": "#333333",
-    "backgroundColor": "#ffffff",
-    "borderStyle": "white",
+    "selectedColor": "#00f3ff",
+    "backgroundColor": "#000000",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "主页",
+        "text": "首页",
+        "iconPath": "assets/tabbar/home.png",
+        "selectedIconPath": "assets/tabbar/home_selected.png"
+      },
+      {
+        "pagePath": "pages/gallery/index",
+        "text": "摄影集",
         "iconPath": "assets/tabbar/home.png",
         "selectedIconPath": "assets/tabbar/home_selected.png"
       },
       {
         "pagePath": "pages/resume/index",
-        "text": "主页",
+        "text": "简历",
         "iconPath": "assets/tabbar/home.png",
         "selectedIconPath": "assets/tabbar/home_selected.png"
       }
@@ -32,9 +39,9 @@
   "usingComponents": {},
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "Portfolio",
+    "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json",
   "permission": {

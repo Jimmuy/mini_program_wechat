@@ -1,11 +1,9 @@
 {
-  "navigationBarTitleText": "首页",
-  "onReachBottomDistance": 10,
-  "backgroundTextStyle": "light",
-  "enablePullDownRefresh": true,
+  "navigationStyle": "custom",
   "usingComponents": {
     "t-loading": "tdesign-miniprogram/loading/loading",
     "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-image": "tdesign-miniprogram/image/image",
     "t-toast": "tdesign-miniprogram/toast/toast"
   }
 }

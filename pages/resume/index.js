@@ -1,66 +1,64 @@
 // pages/resume/index.js
+import { RESUME_DATA, ACCESS_KEY_NAME } from '../../model/resume';
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    isUnlocked: false,
+    inputValue: '',
+    error: false,
+    resumeData: RESUME_DATA,
+    accessKeyName: ACCESS_KEY_NAME
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  onLoad() {
+    const isUnlocked = wx.getStorageSync('isUnlocked');
+    if (isUnlocked) {
+      this.setData({ isUnlocked: true });
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
-
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().init();
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  onInputChange(e) {
+    this.setData({
+      inputValue: e.detail.value,
+      error: false
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
+  handleUnlock() {
+    const { inputValue } = this.data;
+    if (inputValue.trim() === ACCESS_KEY_NAME) {
+      this.setData({ isUnlocked: true, error: false });
+      wx.setStorageSync('isUnlocked', true);
+      wx.showToast({
+        title: '解锁成功',
+        icon: 'success'
+      });
+    } else {
+      this.setData({ error: true, inputValue: '' });
+      wx.vibrateShort();
+    }
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
+  goBack() {
+    wx.navigateBack({
+      fail: () => {
+        wx.switchTab({
+          url: '/pages/index/index',
+        });
+      }
+    });
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage() {
-
+    return {
+      title: '我的简历',
+      path: '/pages/resume/index'
+    };
   }
-})
+});

@@ -1,2 +1,148 @@
-<!--pages/resume/index.wxml-->
-<text>pages/resume/index.wxml</text>
+<!-- pages/resume/index.wxml -->
+<view class="resume-container">
+  <!-- Lock Screen -->
+  <view class="lock-screen" wx:if="{{!isUnlocked}}">
+    <view class="back-btn" bindtap="goBack" style="position: absolute; top: 100rpx; left: 32rpx; z-index: 100;">
+      <t-icon name="arrow-left" size="48rpx" color="#fff" />
+    </view>
+    <view class="lock-card animate-fade-in">
+      <view class="lock-icon-container">
+        <t-icon name="lock-on" size="64rpx" color="#00f3ff" />
+      </view>
+      <view class="lock-title">访问受限</view>
+      <view class="lock-desc">请输入我的姓名查看简历</view>
+
+      <view class="lock-form">
+        <input 
+          class="lock-input {{error ? 'input-error' : ''}}" 
+          placeholder="请输入姓名" 
+          placeholder-class="input-placeholder"
+          bindinput="onInputChange"
+          value="{{inputValue}}"
+        />
+        <view class="error-msg {{error ? 'visible' : ''}}">验证失败，请重试。</view>
+        <button class="unlock-btn" bindtap="handleUnlock">解锁简历</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- Resume Content -->
+  <view class="resume-content" wx:else>
+    <view class="back-btn" bindtap="goBack" style="position: absolute; top: 100rpx; left: 32rpx; z-index: 100;">
+      <t-icon name="arrow-left" size="48rpx" color="#fff" />
+    </view>
+    <!-- Header -->
+    <view class="resume-header animate-slide-up">
+      <view class="header-top">
+        <view class="page-title">个人简历</view>
+        <view class="verified-badge">
+          <t-icon name="check-circle" size="28rpx" color="#4ade80" />
+          <text>已验证</text>
+        </view>
+      </view>
+
+      <view class="profile-section animate-slide-up delay-100">
+        <view class="profile-name">{{resumeData.name}}</view>
+        <view class="profile-title">{{resumeData.title}}</view>
+        
+        <view class="basic-info-grid">
+          <block wx:for="{{resumeData.basicInfo}}" wx:key="label">
+            <view class="info-card">
+              <view class="info-label">{{item.label}}</view>
+              <view class="info-value">{{item.value}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <!-- Core Advantages -->
+    <view class="section animate-slide-up delay-200">
+      <view class="section-title">
+        <view class="title-bar purple"></view>
+        <text>核心优势</text>
+      </view>
+      <view class="section-card">
+        <block wx:for="{{resumeData.coreAdvantages}}" wx:key="*this">
+          <view class="advantage-item">
+            <t-icon name="check-circle-filled" size="40rpx" color="#bc13fe" class="adv-icon" />
+            <text class="adv-text">{{item}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- Skills -->
+    <view class="section animate-slide-up delay-300">
+      <view class="section-title">
+        <view class="title-bar blue"></view>
+        <text>技能专长</text>
+      </view>
+      <view class="skills-grid">
+        <block wx:for="{{resumeData.skills}}" wx:key="category">
+          <view class="skill-card">
+            <view class="skill-header">
+              <t-icon name="{{item.isLanguage ? 'code' : 'terminal'}}" size="36rpx" color="#00f3ff" />
+              <text>{{item.category}}</text>
+            </view>
+            
+            <view class="skill-tags" wx:if="{{item.isLanguage}}">
+              <block wx:for="{{item.items}}" wx:for-item="subItem" wx:key="name">
+                <view class="skill-tag">{{subItem.name}}</view>
+              </block>
+            </view>
+            <view class="skill-desc" wx:else>{{item.items}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- Work Experience -->
+    <view class="section animate-slide-up delay-400">
+      <view class="section-title">
+        <view class="title-bar purple"></view>
+        <text>工作经历</text>
+      </view>
+      <view class="experience-list">
+        <block wx:for="{{resumeData.workExperience}}" wx:key="company">
+          <view class="exp-item">
+            <view class="exp-dot"></view>
+            <view class="exp-content">
+              <view class="exp-header">
+                <view class="exp-role">{{item.role}}</view>
+                <view class="exp-time">{{item.time}}</view>
+              </view>
+              <view class="exp-company">{{item.company}}</view>
+              <view class="exp-summary">{{item.summary}}</view>
+              
+              <view class="exp-details">
+                <block wx:for="{{item.details}}" wx:for-item="detail" wx:key="*this">
+                  <view class="detail-item">
+                    <view class="detail-dot"></view>
+                    <text>{{detail}}</text>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- About Me -->
+    <view class="section animate-slide-up delay-500">
+      <view class="section-title">
+        <view class="title-bar blue"></view>
+        <text>自我评价</text>
+      </view>
+      <view class="about-card">
+        <block wx:for="{{resumeData.aboutMe}}" wx:key="*this">
+          <view class="about-item">
+            <t-icon name="star-filled" size="32rpx" color="#eab308" />
+            <text>{{item}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
