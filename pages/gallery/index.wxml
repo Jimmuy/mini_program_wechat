@@ -32,7 +32,7 @@
   <view class="detail-view" wx:if="{{viewMode === 'detail'}}">
     <view class="detail-header">
       <view class="back-btn" bindtap="backToList">
-        <t-icon name="arrow-left" size="48rpx" color="#fff" />
+        <text class="back-arrow">←</text>
       </view>
       <view class="detail-title">{{currentLocation}}</view>
     </view>

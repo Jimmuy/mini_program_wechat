@@ -103,17 +103,19 @@
 }
 
 .back-btn {
-  padding: 30rpx; /* Increased padding for better touch area */
-  margin-left: -30rpx;
+  padding: 16rpx;
+  margin-left: -16rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000; /* Increased z-index */
-  color: #fff; /* Ensure icon inherits white color */
+  z-index: 1000;
 }
 
-.back-btn t-icon {
-  color: #fff !important; /* Force white color */
+.back-arrow {
+  color: #fff;
+  font-size: 48rpx;
+  font-weight: 300;
+  line-height: 1;
 }
 
 .detail-title {

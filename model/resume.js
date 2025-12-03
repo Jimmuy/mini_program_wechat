@@ -18,7 +18,8 @@ export const RESUME_DATA = {
   coreAdvantages: [
     '5 年 Flutter 全链路开发经验，具备基础库、组件库封装与动态化实战能力；',
     '熟悉 Android+Flutter+H5 混合开发，具备跨端架构设计与热修复经验；',
-    '具备技术培训、文档规范与团队推动能力，助力团队技术转型与效率提升。',
+    '具备技术培训、文档规范与团队推动能力，助力团队技术转型与效率提升；',
+    '具备 1 年 AI 驱动开发实战经验。善于利用最新 LLM 模型；',
   ],
   skills: [
     {
@@ -33,6 +34,11 @@ export const RESUME_DATA = {
       category: '混合开发技术栈',
       items: '熟悉 WebView, JsBridge, Cordova, H5, Weex, RN, Vue。',
     },
+    {
+      category: 'AI辅助开发',
+      items: '关注AI技术发展，使用过多个AI IDE开发工具如cursor,trae 和 Antigravity工具进行代码生成、Bug 调试、文档摘要和技术方案探索，提高开发效率缩短交付周期',
+    },
+
     {
       category: '开发语言',
       isLanguage: true, // 添加一个标志，用于WXML中判断
@@ -106,6 +112,22 @@ export const RESUME_DATA = {
         '使用 SVN 进行版本控制，保障团队代码管理规范，避免版本冲突问题。'
       ]
     },
+  ],
+  personalProjects: [
+    {
+      type: 'website',
+      name: '个人网站',
+      description: 'Jimmy Space - 摄影作品与技术分享',
+      url: 'https://jimmy-space.netlify.app/',
+      icon: 'internet'
+    },
+    {
+      type: 'miniprogram',
+      name: '微信小程序',
+      description: '嘎嘣脆糖 - 个人作品集',
+      searchKeyword: '嘎嘣脆糖',
+      icon: 'app'
+    }
   ],
   aboutMe: [
     '性格随和，具备出色的跨部门沟通能力',

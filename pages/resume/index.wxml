@@ -80,18 +80,51 @@
       </view>
       <view class="skills-grid">
         <block wx:for="{{resumeData.skills}}" wx:key="category">
-          <view class="skill-card">
+          <view class="skill-card" wx:if="{{!item.isLanguage}}">
             <view class="skill-header">
-              <t-icon name="{{item.isLanguage ? 'code' : 'terminal'}}" size="36rpx" color="#00f3ff" />
+              <t-icon name="terminal" size="36rpx" color="#00f3ff" />
               <text>{{item.category}}</text>
             </view>
-            
-            <view class="skill-tags" wx:if="{{item.isLanguage}}">
+            <view class="skill-desc">{{item.items}}</view>
+          </view>
+        </block>
+      </view>
+
+      <!-- Personal Projects within Skills -->
+      <view class="section-subtitle">个人作品</view>
+      <view class="projects-grid">
+        <block wx:for="{{resumeData.personalProjects}}" wx:key="name">
+          <view class="project-card" data-url="{{item.url}}" data-type="{{item.type}}" bindtap="{{item.type === 'website' ? 'onCopyWebsite' : 'onShowMiniProgram'}}">
+            <view class="project-icon-container">
+              <t-icon name="{{item.icon}}" size="48rpx" color="#bc13fe" />
+            </view>
+            <view class="project-info">
+              <view class="project-name">{{item.name}}</view>
+              <view class="project-desc">{{item.description}}</view>
+              <view class="project-action">
+                <text wx:if="{{item.type === 'website'}}">点击复制链接</text>
+                <text wx:else>搜索: {{item.searchKeyword}}</text>
+                <t-icon name="chevron-right" size="32rpx" color="#9ca3af" style="margin-left: 8rpx;" />
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <!-- Development Languages -->
+      <view class="section-subtitle">开发语言</view>
+      <view class="skills-grid">
+        <block wx:for="{{resumeData.skills}}" wx:key="category">
+          <view class="skill-card" wx:if="{{item.isLanguage}}">
+            <view class="skill-header">
+              <t-icon name="code" size="36rpx" color="#00f3ff" />
+              <text>{{item.category}}</text>
+            </view>
+            <view class="skill-tags">
               <block wx:for="{{item.items}}" wx:for-item="subItem" wx:key="name">
                 <view class="skill-tag">{{subItem.name}}</view>
               </block>
             </view>
-            <view class="skill-desc" wx:else>{{item.items}}</view>
           </view>
         </block>
       </view>
@@ -104,8 +137,8 @@
         <text>工作经历</text>
       </view>
       <view class="experience-list">
-        <block wx:for="{{resumeData.workExperience}}" wx:key="company">
-          <view class="exp-item">
+        <block wx:for="{{resumeData.workExperience}}" wx:key="company" wx:for-index="expIndex">
+          <view class="exp-item" bindtap="viewExperienceDetail" data-index="{{expIndex}}">
             <view class="exp-dot"></view>
             <view class="exp-content">
               <view class="exp-header">
@@ -113,15 +146,9 @@
                 <view class="exp-time">{{item.time}}</view>
               </view>
               <view class="exp-company">{{item.company}}</view>
-              <view class="exp-summary">{{item.summary}}</view>
-              
-              <view class="exp-details">
-                <block wx:for="{{item.details}}" wx:for-item="detail" wx:key="*this">
-                  <view class="detail-item">
-                    <view class="detail-dot"></view>
-                    <text>{{detail}}</text>
-                  </view>
-                </block>
+              <view class="exp-summary-row">
+                <view class="exp-summary">{{item.summary}}</view>
+                <t-icon name="chevron-right" size="40rpx" color="#bc13fe" class="exp-chevron" />
               </view>
             </view>
           </view>
@@ -129,8 +156,10 @@
       </view>
     </view>
 
+
+
     <!-- About Me -->
-    <view class="section animate-slide-up delay-500">
+    <view class="section animate-slide-up delay-400">
       <view class="section-title">
         <view class="title-bar blue"></view>
         <text>自我评价</text>
@@ -142,6 +171,40 @@
             <text>{{item}}</text>
           </view>
         </block>
+      </view>
+    </view>
+
+    <!-- Work Experience Detail Popup -->
+    <view class="experience-popup {{showExperiencePopup ? 'show' : ''}}">
+      <view class="popup-mask" bindtap="closeExperiencePopup" catchtouchmove="preventMove"></view>
+      <view class="popup-content">
+        <view class="popup-header">
+          <view class="popup-title">工作经历详情</view>
+          <view class="popup-close" bindtap="closeExperiencePopup">
+            <text>✕</text>
+          </view>
+        </view>
+        
+        <scroll-view scroll-y class="popup-body" wx:if="{{selectedExperience}}" scroll-top="{{scrollTop}}">
+          <view class="exp-detail-header">
+            <view class="exp-detail-role">{{selectedExperience.role}}</view>
+            <view class="exp-detail-time">{{selectedExperience.time}}</view>
+            <view class="exp-detail-company">{{selectedExperience.company}}</view>
+            <view class="exp-detail-summary">{{selectedExperience.summary}}</view>
+          </view>
+
+          <view class="exp-detail-section">
+            <view class="detail-section-title">工作内容</view>
+            <view class="detail-list">
+              <block wx:for="{{selectedExperience.details}}" wx:key="*this">
+                <view class="detail-list-item">
+                  <view class="detail-bullet">•</view>
+                  <text class="detail-text">{{item}}</text>
+                </view>
+              </block>
+            </view>
+          </view>
+        </scroll-view>
       </view>
     </view>
   </view>

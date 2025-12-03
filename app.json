@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/gallery/index",
-    "pages/resume/index"
+    "pages/resume/index",
+    "pages/resume/details/index"
   ],
   "tabBar": {
     "custom": true,
@@ -31,9 +32,6 @@
       }
     ]
   },
-  "requiredPrivateInfos": [
-    "chooseAddress"
-  ],
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {},
   "window": {
