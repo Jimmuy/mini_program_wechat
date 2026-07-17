@@ -1,132 +1,103 @@
-<p align="center">
-  <a href="https://tdesign.tencent.com/" target="_blank">
-    <img alt="TDesign Logo" width="200" src="https://tdesign.gtimg.com/site/TDesign.png">
-  </a>
-</p>
+# 嘎嘣脆糖 · 微信小程序个人作品集
 
-<p align="center">
-  <a href="https://img.shields.io/github/stars/Tencent/tdesign-miniprogram-starter-retail">
-    <img src="https://img.shields.io/github/stars/Tencent/tdesign-miniprogram-starter-retail" alt="License">
-  </a>  
-  <a href="https://github.com/Tencent/tdesign-miniprogram-starter-retail/issues">
-    <img src="https://img.shields.io/github/issues/Tencent/tdesign-miniprogram-starter-retail" alt="License">
-  </a>  
-  <a href="https://github.com/Tencent/tdesign-miniprogram-starter-retail/LICENSE">
-    <img src="https://img.shields.io/github/license/Tencent/tdesign-miniprogram-starter-retail" alt="License">
-  </a>
-  <a href="https://www.npmjs.com/package/tdesign-miniprogram">
-    <img src="https://img.shields.io/npm/v/tdesign-miniprogram.svg?sanitize=true" alt="Version">
-  </a>
-  <a href="https://www.npmjs.com/package/tdesign-miniprogram">
-    <img src="https://img.shields.io/npm/dw/tdesign-miniprogram" alt="Downloads">
-  </a>
-</p>
+一个基于微信小程序原生能力开发的个人作品集，用于展示个人介绍、摄影作品、设备与经历信息。项目采用深色视觉风格，通过自定义 TabBar 串联首页、摄影集和简历三个主要页面。
 
-# TDesign 零售行业模版示例小程序
+## 功能概览
 
-TDesign 零售模版示例小程序采用 [TDesign 企业级设计体系小程序解决方案](https://tdesign.tencent.com/miniprogram/overview) 进行搭建，依赖 [TDesign 微信小程序组件库](https://github.com/Tencent/tdesign-miniprogram)，涵盖完整的基本零售场景需求。
+- **首页**：展示个人定位、常用设备、旅行足迹，并提供摄影集入口。
+- **摄影集**：按地点组织照片，支持列表、图集详情和灯箱浏览，并展示相机、镜头、光圈、快门等 EXIF 信息。
+- **简历**：展示个人简介、技能、工作经历和个人项目，支持查看经历详情。
+- **自定义导航**：使用自定义 TabBar 在首页、摄影集和简历之间切换。
+- **分享能力**：首页、摄影集和简历页面均提供微信分享配置。
 
-## :high_brightness: 预览
+## 技术栈
 
-<p>请使用微信扫描以下二维码：</p>
+- 微信小程序原生框架：JavaScript、WXML、WXSS、JSON
+- [TDesign MiniProgram](https://tdesign.tencent.com/miniprogram/overview)
+- 页面本地状态：`Page.data`、`setData`
+- 静态内容模型：`model/resume.js`、`model/gallery.js`
+- 代码规范：ESLint、Prettier、Commitlint
 
- <img src="https://we-retail-static-1300977798.cos.ap-guangzhou.myqcloud.com/retail-mp/common/qrcode.jpeg" width = "200" height = "200" alt="模版小程序二维码" align=center />
+项目不依赖服务端接口，当前展示内容随小程序代码一同发布。
 
-## :pushpin: 项目介绍
+## 目录结构
 
-### 1. 业务介绍
-
-零售行业模版小程序是个经典的单店版电商小程序，涵盖了电商的黄金链路流程，从商品->购物车->结算->订单等。小程序总共包含 28 个完整的页面，涵盖首页，商品详情页，个人中心，售后流程等基础页面。采用 mock 数据进行展示，提供了完整的零售商品展示、交易与售后流程。页面详情：
-
-<img src="https://cdn-we-retail.ym.tencent.com/tsr/tdesign-starter-readmeV1.png" width = "650" height = "900" alt="模版小程序页面详情" align=center />
-
-
-
-主要页面截图如下：
-
-<p align="center">
-    <img alt="example-home" width="200" src="https://cdn-we-retail.ym.tencent.com/tsr/example/v1/home.png" />
-    <img alt="example-sort" width="200" src="https://cdn-we-retail.ym.tencent.com/tsr/example/v2/sort.png" />
-    <img alt="example-cart" width="200" src="https://cdn-we-retail.ym.tencent.com/tsr/example/v1/cart.png" />
-    <img alt="example-user-center" width="200" src="https://cdn-we-retail.ym.tencent.com/tsr/example/v1/user-center.png" />
-    <img alt="example-goods-detail" width="200" src="https://cdn-we-retail.ym.tencent.com/tsr/example/v1/goods-detail.png" />
-    <img alt="example-pay" width="200" src="https://cdn-we-retail.ym.tencent.com/tsr/example/v1/pay.png" />
-    <img alt="example-order" width="200" src="https://cdn-we-retail.ym.tencent.com/tsr/example/v1/order.png" />
-    <img alt="example-order-detail" width="200" src="https://cdn-we-retail.ym.tencent.com/tsr/example/v2/order.png" />
-</p>
-
-
-
-### 2. 项目构成
-
-零售行业模版小程序采用基础的 JavaScript + WXSS + ESLint 进行构建，降低了使用门槛。
-
-项目目录结构如下：
-
-```
-|-- tdesign-miniprogram-starter
-    |-- README.md
-    |-- app.js
-    |-- app.json
-    |-- app.wxss
-    |-- components	//	公共组件库
-    |-- config	//	基础配置
-    |-- custom-tab-bar	//	自定义 tabbar
-    |-- model	//	mock 数据
-    |-- pages
-    |   |-- cart	//	购物车相关页面
-    |   |-- coupon	//	优惠券相关页面
-    |   |-- goods	//	商品相关页面
-    |   |-- home	//	首页
-    |   |-- order	//	订单售后相关页面
-    |   |-- promotion-detail	//	营销活动页面
-    |   |-- usercenter	//	个人中心及收货地址相关页面
-    |-- services	//	请求接口
-    |-- style	//	公共样式与iconfont
-    |-- utils	//	工具库
+```text
+.
+├── app.js                     # 小程序入口与更新管理
+├── app.json                   # 页面路由、TabBar 和全局窗口配置
+├── app.wxss                   # 全局样式
+├── assets/                    # 本地图片与 TabBar 资源
+├── common/                    # 通用平台能力
+├── custom-tab-bar/            # 自定义底部导航
+├── model/
+│   ├── gallery.js             # 摄影分组、图片及 EXIF 数据
+│   └── resume.js              # 首页、简历与设备数据
+├── pages/
+│   ├── index/                 # 首页
+│   ├── gallery/               # 摄影集列表、详情和灯箱
+│   └── resume/
+│       ├── index.*            # 简历主页
+│       └── details/           # 简历详情页
+├── project.config.json        # 微信开发者工具项目配置
+└── package.json               # npm 依赖与开发命令
 ```
 
-### 3. 数据模拟
+## 本地运行
 
-零售小程序采用真实的接口数据，模拟后端返回逻辑，在小程序展示完整的购物场景与购物体验逻辑。
+### 环境要求
 
-### 4. 添加新页面
+- Node.js 与 npm
+- [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+- 可用于本地调试的小程序 AppID 或测试号
 
-1. 在 `pages `目录下创建对应的页面文件夹
-2. 在 `app.json` 文件中的 ` "pages"` 数组中加上页面路径
-3. [可选] 在 `project.config.json` 文件的 `"miniprogram-list"` 下添加页面配置
+### 启动步骤
 
-## :hammer: 构建运行
+1. 安装依赖：
 
-1. `npm install`
-2. 小程序开发工具中引入工程
-3. 构建 npm
+   ```bash
+   npm install
+   ```
 
-## :art: 代码风格控制
+2. 打开微信开发者工具，导入仓库根目录。
+3. 在开发者工具中选择“工具 → 构建 npm”，生成小程序可用的 npm 依赖。
+4. 编译项目，依次检查首页、摄影集和简历页面。
 
-`eslint` `prettier`
+摄影图片和部分设备图片来自外部 URL。真机预览或正式发布前，需要在微信公众平台配置对应的 `downloadFile` 合法域名，并验证图片加载失败时的页面表现。
 
-## :iphone: 基础库版本
+## 内容维护
 
-最低基础库版本`^2.6.5`
+| 内容 | 维护位置 |
+| --- | --- |
+| 姓名、角色、技能、工作经历和个人项目 | `model/resume.js` |
+| 首页设备卡片 | `model/resume.js` 中的 `GEAR_DATA` |
+| 摄影分组、照片地址和 EXIF 信息 | `model/gallery.js` |
+| 首页旅行足迹 | `pages/index/index.js` 中的 `mapData` |
+| 底部导航项 | `app.json` 与 `custom-tab-bar/data.js` |
 
-## :dart: 反馈
+新增页面时，需要同步完成以下配置：
 
-企业微信群
-TDesign 团队会及时在企业微信大群中同步发布版本、问题修复信息，也会有一些关于组件库建设的讨论，欢迎微信或企业微信扫码入群交流：
+1. 在 `pages/` 下创建对应的 `.js`、`.wxml`、`.wxss` 和 `.json` 文件。
+2. 在 `app.json` 的 `pages` 数组中注册页面。
+3. 如果页面属于底部导航，同时更新 `app.json.tabBar.list` 和 `custom-tab-bar/data.js`。
 
-<img src="https://oteam-tdesign-1258344706.cos.ap-guangzhou.myqcloud.com/site/doc/TDesign%20IM.png" width = "200" height = "200" alt="模版小程序页面详情" align=center />
+## 开发与检查
 
+```bash
+# 检查并自动修复 JavaScript 代码风格
+npm run lint
 
-邮件联系：tdesign@tencent.com
+# 检查已暂存的 JavaScript/TypeScript 文件
+npm run check
+```
 
-## :link: TDesign 其他技术栈实现
+当前仓库尚未配置自动化测试，`npm test` 仍是占位命令。提交功能变更前，除静态检查外，还应在微信开发者工具或真机中完成交互验证。
 
-- 移动端 小程序 实现：[mobile-miniprogram](https://github.com/Tencent/tdesign-miniprogram)
-- 桌面端 Vue 2 实现：[web-vue](https://github.com/Tencent/tdesign-vue)
-- 桌面端 Vue 3 实现：[web-vue-next](https://github.com/Tencent/tdesign-vue-next)
-- 桌面端 React 实现：[web-react](https://github.com/Tencent/tdesign-react)
+## 数据与安全说明
 
-## :page_with_curl: 开源协议
+简历页的访问提示和本地校验仅用于界面展示，不构成真正的访问控制。`model/` 中的数据会被打包进客户端，不能用于保存密码、密钥、隐私数据或其他需要保密的内容。如需保护数据，应改由可信服务端完成身份验证和授权，并仅向已授权用户返回内容。
 
-TDesign 遵循 [MIT 协议](https://github.com/Tencent/tdesign-miniprogram-starter-retail/LICENSE)。
+## 相关文档
+
+- [微信小程序开发文档](https://developers.weixin.qq.com/miniprogram/dev/framework/)
+- [TDesign MiniProgram 组件文档](https://tdesign.tencent.com/miniprogram/overview)
